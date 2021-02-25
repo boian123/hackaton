@@ -6,9 +6,16 @@ interface IUser {
     createdAt?: string;
     updatedAt?: string;
 }
+interface LoginUserForm{
+    email: string;
+    password: string;
+}
 
 type UserProps = {
     user: IUser
+}
+interface Token {
+    token: string;
 }
 
 type ApiDataType = {
@@ -16,5 +23,7 @@ type ApiDataType = {
     status: string
     users: IUser[]
     user: IUser
+    input:LoginUserForm
+    token:Token
   }
   

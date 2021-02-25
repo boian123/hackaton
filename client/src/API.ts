@@ -6,7 +6,7 @@ const baseUrl: string = 'http://localhost:4000'
  const getUsers = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const users: AxiosResponse<ApiDataType> = await axios.get(
-      `${baseUrl}/api/users`
+      `${baseUrl}/users`
     )
     return users
   } catch (error) {
@@ -29,6 +29,22 @@ const baseUrl: string = 'http://localhost:4000'
   } catch (error) {
     throw new Error(error)
   }
+}
+
+const loginUser = async (formData:LoginUserForm):Promise<AxiosResponse<ApiDataType>> =>{
+      try {
+        const input:LoginUserForm= {
+          email:formData.email,
+          password:formData.password
+        }
+        const token: AxiosResponse<ApiDataType> = await axios.post(
+          `${baseUrl}/login/token`,
+          input
+        )
+        return token
+      }catch (error) {
+        throw new Error(error)
+      }
 }
 
  const updateUsername = async ({username,_id}: IUser): Promise<AxiosResponse<ApiDataType>> => {
@@ -58,4 +74,4 @@ const deleteUser = async (_id: string): Promise<AxiosResponse<ApiDataType>> => {
 }
 
 
-export { getUsers ,addUser,updateUsername,deleteUser }
+export { getUsers ,addUser,updateUsername,deleteUser,loginUser }

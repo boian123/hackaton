@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getUsers, addUser, updateUsername, deleteUser } from '../API'
 import User from './User'
 import Register from './Register'
+import Navbar from './Navbar'
 
 
 
@@ -69,6 +70,7 @@ export default function Handlers() {
           user={user}
         />
         ))}
+        <Navbar/>
     </div>
   
   )
