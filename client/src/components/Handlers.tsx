@@ -33,9 +33,15 @@ export default function Handlers() {
 
  
   return (
-    <div>
+    <div>  
+   <div className="focus"> 
+    <div className="focus--mask">
+      <div className="focus--mask-inner">KOKAIN</div>
+    </div>
+  </div>
            <Register saveUser={handleSaveUser} />    
         <Navbar/>
+        
     </div>
   
   )
