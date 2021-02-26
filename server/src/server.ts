@@ -8,7 +8,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 import connectDB from "./helpers/database"
 import auth from "./routes/authRoutes";
-import user from "./routes/userRoutes";
 
 
 
@@ -45,7 +44,7 @@ app.set("port", process.env.PORT || 4000);
 
 
 app.use("/", auth);
-app.use("/", user);
+
 
 
 const port = process.env.PORT;
