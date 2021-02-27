@@ -36,16 +36,16 @@ type Props = {
 
 const AddUser: React.FC<Props> = ({ saveUser }) => {
 
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-  const [formData, setFormData] = useState<IUser | {}>()
+  // const classes = useStyles();
+  // const bull = <span className={classes.bullet}>•</span>;
+  // const [formData, setFormData] = useState<IUser | {}>()
 
-  const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
-    setFormData({
-      ...formData,
-      [e.currentTarget.id]: e.currentTarget.value,
-    })
-  }
+  // const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.currentTarget.id]: e.currentTarget.value,
+  //   })
+  // }
 
   return (
     <div className="registerDiv">
@@ -133,7 +133,7 @@ const AddUser: React.FC<Props> = ({ saveUser }) => {
       />
 
 
-<Card className={classes.root}>
+{/* <Card className={classes.root}>
       <CardContent>
      
       <form className='Form' onSubmit={(e) => saveUser(e, formData)}>
@@ -160,7 +160,7 @@ const AddUser: React.FC<Props> = ({ saveUser }) => {
       </CardActions>
       
     </Card>
-
+ */}
 
       
   

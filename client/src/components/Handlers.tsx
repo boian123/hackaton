@@ -3,6 +3,7 @@ import { addUser } from '../API'
 
 import Register from './Register'
 import Navbar from './Navbar'
+import Wizard from "./SmartRecommendationWizard/Wizard";
 
 
 
@@ -39,7 +40,8 @@ export default function Handlers() {
       <div className="focus--mask-inner">KOKAIN</div>
     </div>
   </div>
-           <Register saveUser={handleSaveUser} />    
+           <Register saveUser={handleSaveUser} />
+           <Wizard/>
         <Navbar/>
         
     </div>
