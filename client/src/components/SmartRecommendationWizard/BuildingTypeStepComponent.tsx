@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {BuildingType} from "../../Models/BuildingType";
 import {BuildingMaterial} from "../../utils/Enums";
@@ -32,4 +33,5 @@ export default class BuildingTypeStepComponent extends React.Component<BuildingT
         this.setState({yearOfConstruction: event.target.value})
     }
 
+}
 }
