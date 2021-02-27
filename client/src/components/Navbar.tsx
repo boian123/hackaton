@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-export default function Navbar() {
+export default function Navbar():JSX.Element {
   return (
     <div>
        <nav className="navbar">

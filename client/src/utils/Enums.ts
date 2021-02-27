@@ -1,34 +1,39 @@
 export enum ElectricityProvider {
-    NEK,
-    CEZ,
-    EVN
+    INITIAL='',
+    NEK='National Eletric Company',
+    CEZ = 'CEZ',
+    EVN ='EVN'
 }
 
 export enum WaterProvider {
-    VIK,
-    VIKSofia,
-    NWS,
-    TruboprovdaVPernik
+    INITIAL='',
+    VIK='VIK',
+    VIKSofia = 'V i K Sofia',
+    NWS = 'New Water Solutions',
+    TruboprovdaVPernik = 'Garantirano ot Gerb'
 }
 
 export enum BuildingMaterial {
-    Brick,
-    Concrete,
-    Monolith,
-    Wood
+    INITIAL='',
+    BRICK='Brick',
+    CONCRETE='Concrete',
+    MONOLITH='Monolithic block structure',
+    WOOD = 'Wood'
 }
 
 export enum OwnershipType {
-    Own,
-    Rent
+    INITIAL='',
+    OWN = 'Own',
+    RENT = 'Rent'
 }
 
 export enum HeatingType {
-    AC,
-    Wood,
-    Pellets,
-    Coal,
-    BitcoinFarm,
-    TEC
+    INITIAL='',
+    AC='Air conditioners',
+    WOOD = 'Firewood',
+    PELLETS= 'Wooden pellets',
+    COAL='Charcoal',
+    BITCOINFARM = 'BTC farms',
+    TEC = 'Centralized heating'
 
 }
