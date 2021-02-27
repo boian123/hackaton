@@ -34,4 +34,3 @@ export default class BuildingTypeStepComponent extends React.Component<BuildingT
     }
 
 }
-}

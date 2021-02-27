@@ -11,12 +11,13 @@ export enum WaterProvider {
     VIKSofia = 'V i K Sofia',
     NWS = 'New Water Solutions',
     TruboprovdaVPernik = 'Garantirano ot Gerb'
-}
-
 export enum BuildingMaterial {
-    INITIAL='',
-    BRICK='Brick',
-    CONCRETE='Concrete',
+    Brick,
+    Concrete,
+    Monolith,
+    Wood,
+    INITIAL
+}   CONCRETE='Concrete',
     MONOLITH='Monolithic block structure',
     WOOD = 'Wood'
 }
