@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-// import React from 'react'
 
-// export default function BuildingTypeStepComponent() {
-//     return (
-//         <div>
-            
-//         </div>
-//     )
-// }
-=======
 import React from 'react';
 import {BuildingType} from "../../Models/BuildingType";
 import {BuildingMaterial} from "../../utils/Enums";
@@ -24,6 +14,8 @@ interface BuildingTypeState extends BuildingType {
 export default class BuildingTypeStepComponent extends React.Component<BuildingTypeProps, BuildingTypeState> {
     constructor(props: BuildingTypeProps) {
         super(props);
+        this.handleInputYear = this.handleInputYear.bind(this);
+        this.handleMaterialSelection = this.handleMaterialSelection.bind(this);
         this.state = {
             buildingType: BuildingMaterial.INITIAL,
             yearOfConstruction: 0
@@ -34,5 +26,12 @@ export default class BuildingTypeStepComponent extends React.Component<BuildingT
         return undefined;
     }
 
+    handleInputYear(event: any) {
+        this.setState({yearOfConstruction: event.target.value})
+    }
+    handleMaterialSelection(event: any) {
+        this.setState({yearOfConstruction: event.target.value})
+    }
+
 }
->>>>>>> 0ffb6592356015320638a0147d71fbbf9d7a969f
+}
