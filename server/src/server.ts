@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 import connectDB from "./helpers/database"
-import auth from "./routes/authRoutes";
+import stepper from "./routes/stepperRoutes";
 
 
 
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 
-connectDB();
+// connectDB();
 
 
 app.set("port", process.env.PORT || 4000);
@@ -43,11 +43,11 @@ app.set("port", process.env.PORT || 4000);
 
 
 
-app.use("/", auth);
+app.use("/",stepper);
 
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
 );

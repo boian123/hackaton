@@ -1,6 +1,7 @@
 
 import { Router } from "express";
 import { body } from "express-validator";
+import {dataRequest} from "../controllers/dataController"
 
 
 
@@ -11,9 +12,7 @@ import { body } from "express-validator";
 const router: Router = Router();
 
 
-router.post('/steps'
-
-)
+router.post('/steps',dataRequest)
 
 
 // router.post(

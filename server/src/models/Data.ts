@@ -15,4 +15,3 @@ const dataSchema = new Schema({
 export default model('Data', dataSchema)
 
 
-req.body.ownership.people.value * 50
