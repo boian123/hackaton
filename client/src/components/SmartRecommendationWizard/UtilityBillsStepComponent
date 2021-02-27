@@ -1,0 +1,21 @@
+import React from 'react';
+
+interface UtilityBillsProps {
+
+}
+
+interface UtilityBillsState {
+
+}
+
+export default class UtilityBillsStepComponent extends React.Component<UtilityBillsProps, UtilityBillsState>{
+    constructor(props:UtilityBillsProps) {
+        super(props);
+
+    }
+
+    render() {
+        return undefined;
+    }
+
+}
