@@ -2,7 +2,8 @@ import * as React from 'react';
 import OwnershipTypeStepComponent from './OwnershipTypeStepComponent';
 import CityRegionStepComponent from './CityRegionStepComponent';
 import BuildingTypeStepComponent from './BuildingTypeStepComponent';
-import UtilityBillsStepComponent from './UtilityBillsStepComponent'
+import ElectricityStepComponent from './ElectricityStepComponent'
+import WaterBillComponent from "./WaterBillComponent";
 
 enum StepKey {
     OwnershipType = 'Do you rent or do you own?',
@@ -30,7 +31,8 @@ export default class Wizard extends React.Component<WizardState, WizardProps> {
             <div>
                 <OwnershipTypeStepComponent/>
                 <CityRegionStepComponent/>
-                <UtilityBillsStepComponent/>
+                <ElectricityStepComponent/>
+                <WaterBillComponent/>
                 <BuildingTypeStepComponent/>
                 <button type="submit">Let's analyze</button>
             </div>
