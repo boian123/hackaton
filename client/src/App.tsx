@@ -1,11 +1,11 @@
 import React from 'react';
 
 import './App.css';
-import Handlers from './components/Handlers';
+import Home from './components/Home';
 
 function App() {
   return (
-   <Handlers/>  );
+   <Home/>  );
 }
 
 export default App;

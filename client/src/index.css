@@ -216,3 +216,46 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
 }
 
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+
+
+.line-1{
+    
+    position: relative;
+    top: 14em; 
+    width: 8em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 2rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 2s steps(33) 1s 1 normal both,
+             blinkTextCursor 500ms steps(33) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 10em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+.container{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    background:transparent;
+    justify-content: center;
+    
+
+}

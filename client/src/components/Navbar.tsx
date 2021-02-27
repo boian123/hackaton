@@ -19,28 +19,28 @@ export default function Navbar() {
       <li className="nav-item">
         <a href="#" className="nav-link">
         
-          <span className="link-text">Cats</span>
+          <span className="link-text">Page1</span>
         </a>
       </li>
 
       <li className="nav-item">
         <a href="#" className="nav-link">
           
-          <span className="link-text">Aliens</span>
+          <span className="link-text">Page2</span>
         </a>
       </li>
 
       <li className="nav-item">
         <a href="#" className="nav-link">
           
-          <span className="link-text">Space</span>
+          <span className="link-text">Page3</span>
         </a>
       </li>
 
       <li className="nav-item">
         <a href="#" className="nav-link">
         
-          <span className="link-text">Shuttle</span>
+          <span className="link-text">Page4</span>
         </a>
       </li>
 
@@ -51,7 +51,7 @@ export default function Navbar() {
       
         
          
-          <span className="link-text">Themify</span>
+          <span className="link-text">Page5</span>
         </a>
       </li>
     </ul>
