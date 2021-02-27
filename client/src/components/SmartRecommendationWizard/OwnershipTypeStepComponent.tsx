@@ -7,6 +7,7 @@ interface OwnershipTypeProps {
 
 interface OwnershipTypeState {
     ownershipType: OwnershipType;
+    numberOfPeope: number
 
 }
 
@@ -14,7 +15,8 @@ export default class OwnershipTypeStepComponent extends React.Component<Ownershi
     constructor(props: OwnershipTypeProps) {
         super(props);
         this.state = {
-            ownershipType: OwnershipType.INITIAL
+            ownershipType: OwnershipType.INITIAL,
+            numberOfPeope: 0
         }
     }
 

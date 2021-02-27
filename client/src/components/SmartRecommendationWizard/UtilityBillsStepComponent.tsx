@@ -23,7 +23,6 @@ export default class UtilityBillsStepComponent extends React.Component<UtilityBi
             },
             waterBill: {
                 amount: 0,
-                familyMembers: 0,
                 provider: WaterProvider.INITIAL
             }
 
