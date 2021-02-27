@@ -12,10 +12,12 @@ import { BuildingMaterial, HeatingType } from "../types/Enums";
 import { readlink } from "fs/promises";
 
 
-const dataRequest =  (req: Request, res: Response) => {
+const dataRequest =  async (req: Request, res: Response) => {
       console.log(req.body)
-    const {people,ownership,buildType,electricityBill,heatingType,yearOfConstrucion } = req.body;
-     
+       const {userInput,people,ownership,buildType,electricityBill,heatingType,constructionAge } = req.body;
+       let valueCalc = 50 * people
+        let sumValue:number[] = []
+        let secondArray = valueCalc - sumValue.reduce((a,b)=> a+b,0)
    
 
         
@@ -27,15 +29,12 @@ const dataRequest =  (req: Request, res: Response) => {
 
 
         function buildTypeService() {
-          let valueCalc = 50 * people
-          let sumValue:number[] = []
-          let secondArray = sumValue.reduce((a,b)=> a+b,0)
        
           if(buildType === 'Brick'){
 
-            const addBrick = 0;
+            const addBrick = (valueCalc * 1) - valueCalc
             sumValue.push(addBrick)
-            console.log(sumValue)
+         
          }
 
           if(buildType === 'Concrete'){
@@ -49,71 +48,82 @@ const dataRequest =  (req: Request, res: Response) => {
           if(buildType === 'Wood'){
             const addWood = (valueCalc * 1.1) - valueCalc
            sumValue.push(addWood)
-           
+            
           }
-          if(yearOfConstrucion  <= 7){
+
+
+        }
+        buildTypeService()
+
+        function delay(ms: number) {
+          return new Promise( resolve => setTimeout(resolve, ms) );
+      }
+       delay(300)
+
+    function buildingAgeService  () {
+
+          if(constructionAge == 7 ){
             const addNew = 0;
              sumValue.push(addNew)
+       
           }
-          if(yearOfConstrucion  > 7 && yearOfConstrucion <=15){
+
+          if(constructionAge > 7){
             const addNormal = (valueCalc * 1.09) - valueCalc
             sumValue.push(addNormal)
           }
 
-          if(yearOfConstrucion  > 15 && yearOfConstrucion <=35){
+          if(constructionAge  == "Old > 20"){
             const addOld = (valueCalc * 1.17) - valueCalc
             sumValue.push(addOld)
           }
-          if(yearOfConstrucion  > 35){
+          if(constructionAge  == "Super Old > 35"){
             const addOldest = (valueCalc * 1.23) - valueCalc
              sumValue.push(addOldest)
             // badAlerts.push('Older Property Solution')
 
-            
           }
            
-          if ('AC'){
+
+        }
+
+        buildingAgeService()
+
+
+        function heatingTypeService  () { 
+          if (heatingType =='AC'){
             const addAC = (valueCalc * 1.24) - valueCalc
             sumValue.push(addAC)
           }
-          if ('Wood'){
+          if (heatingType == 'Wood'){
             const addWood = (valueCalc * 1.32) - valueCalc
               sumValue.push(addWood)
       
           }
-          if ('Palletes'){
+          if (heatingType =='Palletes'){
             const addPalletes = (valueCalc * 1.22) - valueCalc
             sumValue.push(addPalletes)
           }
-          if ('Coal'){
+          if (heatingType =='Coal'){
             const addCoal = (valueCalc * 1.26) - valueCalc
              sumValue.push(addCoal)
           }
-          if ('TEC'){
+          if (heatingType =='TEC'){
             const addTEC = (valueCalc * 1.2) - valueCalc
             sumValue.push(addTEC)
           }
-
-          try {
-            
-            res.json({value:secondArray})
+        }
+        heatingTypeService()
+        
+        try {
+            console.log(sumValue)
+            res.json({value:valueCalc - (sumValue.reduce((a,b)=> a+b,0) )})
          }catch(err){
             throw new Error(err.message)
         }
-        }
-        buildTypeService();
-   
-        
-       
-
-
-        }
   
-     
-
         
-
-      
+      }
     
 export{ dataRequest}
 
