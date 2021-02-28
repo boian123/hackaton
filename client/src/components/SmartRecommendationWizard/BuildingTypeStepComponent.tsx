@@ -23,7 +23,19 @@ export default class BuildingTypeStepComponent extends React.Component<BuildingT
     }
 
     render() {
-        return undefined;
+        return (
+          <React.Fragment>
+          <div className="form-group">
+            <label>Building making year</label>
+            <br />
+            <input type="number" min="1940" max="2021" className="form-control" placeholder="Making year" />
+            <br />
+            <label>Type of building</label>
+            <br />
+            makeInputElementsFromList(BuildingMaterial, "type_of_building");
+          </div>
+        </React.Fragment>
+      );
     }
 
     handleInputYear(event: any) {

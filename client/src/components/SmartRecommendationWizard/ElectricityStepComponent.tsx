@@ -1,6 +1,9 @@
 import React from 'react';
 import {ElectricityBill} from "../../Models/ElectricityBill";
 import {ElectricityProvider, HeatingType} from "../../utils/Enums";
+/* how to inject the iterator in the class */
+/* import Iterator from "../../utils/Iterator"; */
+
 
 interface ElectricityBillProps {
 
@@ -24,7 +27,23 @@ export default class ElectricityStepComponent extends React.Component<Electricit
     }
 
     render() {
-        return undefined;
+        return (
+          <React.Fragment>
+          <div className="form-group">
+            <label>Electricity amount</label>
+            <br />
+            <input type="text" className="form-control" placeholder="Enter kW Amount" />
+            <br />
+            <label>Type of heating</label>
+            <br />
+            makeInputElementsFromList(HeatingType, "types_of_heating");
+            <br />
+            <label>Electricity Provider</label>
+            <br />
+            makeInputElementsFromList(ElectricityProvider, "el_provider");
+          </div>
+        </React.Fragment>
+        );
     }
 
     handleElectricityAmount(event: any) {

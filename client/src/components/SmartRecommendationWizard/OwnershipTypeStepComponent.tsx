@@ -22,9 +22,20 @@ export default class OwnershipTypeStepComponent extends React.Component<Ownershi
         }
     }
 
-
     render() {
-        return undefined;
+        return (
+          <React.Fragment>
+            <div className="form-group">
+            <label>Number of people</label>
+            <br />
+            <input type="number" min="0" max="10" className="form-control" placeholder="Number of people living together" />
+            <br />
+            <label>Type of ownership</label>
+            <br />
+            makeInputElementsFromList(OwnershipType, "type_of_ownership");
+            </div>
+          </React.Fragment>
+        );
     }
 
     handleOwnershipSelection(event: any) {
