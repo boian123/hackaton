@@ -47,7 +47,7 @@ app.use("/",stepper);
 
 
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4200
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
 );

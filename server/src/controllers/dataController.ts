@@ -12,18 +12,17 @@ import { BuildingMaterial, HeatingType } from "../types/Enums";
 import { readlink } from "fs/promises";
 
 
-const dataRequest =  async (req: Request, res: Response) => {
+const dataRequest =  (req: Request, res: Response) => {
       console.log(req.body)
-       const {userInput,people,ownership,buildType,electricityBill,heatingType,constructionAge } = req.body;
+       const { userInput,people,ownership,buildType,electricityBill,heatingType,constructionAge } = req.body;
        let valueCalc = 50 * people
         let sumValue:number[] = []
         let secondArray = valueCalc - sumValue.reduce((a,b)=> a+b,0)
+        
    
 
         
         
-
- 
 
 
 
@@ -38,7 +37,7 @@ const dataRequest =  async (req: Request, res: Response) => {
          }
 
           if(buildType === 'Concrete'){
-             const addConcrete = (valueCalc * 0.94) - valueCalc
+             const addConcrete = (valueCalc * 0.96) - valueCalc
              sumValue.push(addConcrete)
           }
           if (buildType === 'Monolith'){
@@ -46,7 +45,7 @@ const dataRequest =  async (req: Request, res: Response) => {
             sumValue.push(addMonolith)
           }
           if(buildType === 'Wood'){
-            const addWood = (valueCalc * 1.1) - valueCalc
+            const addWood = (valueCalc * 1.2) - valueCalc
            sumValue.push(addWood)
             
           }
@@ -55,30 +54,27 @@ const dataRequest =  async (req: Request, res: Response) => {
         }
         buildTypeService()
 
-        function delay(ms: number) {
-          return new Promise( resolve => setTimeout(resolve, ms) );
-      }
-       delay(300)
+  
 
-    function buildingAgeService  () {
+    function buildingAgeService  () { 
 
-          if(constructionAge == 7 ){
+          if(constructionAge < 7 ){
             const addNew = 0;
              sumValue.push(addNew)
        
           }
 
-          if(constructionAge > 7){
-            const addNormal = (valueCalc * 1.09) - valueCalc
+          if(constructionAge > 7 && constructionAge <= 15){
+            const addNormal = (valueCalc * 1.04) - valueCalc
             sumValue.push(addNormal)
           }
 
-          if(constructionAge  == "Old > 20"){
-            const addOld = (valueCalc * 1.17) - valueCalc
+          if(constructionAge  > 15 && constructionAge <= 35){
+            const addOld = (valueCalc * 1.10) - valueCalc
             sumValue.push(addOld)
           }
-          if(constructionAge  == "Super Old > 35"){
-            const addOldest = (valueCalc * 1.23) - valueCalc
+          if(constructionAge  > 35){
+            const addOldest = (valueCalc * 1.18) - valueCalc
              sumValue.push(addOldest)
             // badAlerts.push('Older Property Solution')
 
@@ -92,38 +88,47 @@ const dataRequest =  async (req: Request, res: Response) => {
 
         function heatingTypeService  () { 
           if (heatingType =='AC'){
-            const addAC = (valueCalc * 1.24) - valueCalc
+            const addAC = (valueCalc * 1.1) - valueCalc
             sumValue.push(addAC)
           }
           if (heatingType == 'Wood'){
-            const addWood = (valueCalc * 1.32) - valueCalc
+            const addWood = (valueCalc * 1.2) - valueCalc
               sumValue.push(addWood)
       
           }
           if (heatingType =='Palletes'){
-            const addPalletes = (valueCalc * 1.22) - valueCalc
+            const addPalletes = (valueCalc * 1.12) - valueCalc
             sumValue.push(addPalletes)
           }
           if (heatingType =='Coal'){
-            const addCoal = (valueCalc * 1.26) - valueCalc
+            const addCoal = (valueCalc * 1.17) - valueCalc
              sumValue.push(addCoal)
           }
           if (heatingType =='TEC'){
-            const addTEC = (valueCalc * 1.2) - valueCalc
+            const addTEC = (valueCalc * 1.15) - valueCalc
             sumValue.push(addTEC)
           }
         }
         heatingTypeService()
         
-        try {
-            console.log(sumValue)
-            res.json({value:valueCalc - (sumValue.reduce((a,b)=> a+b,0) )})
-         }catch(err){
-            throw new Error(err.message)
-        }
-  
+    try{
+        const calcus =userInput -( valueCalc + sumValue.reduce((a,b)=> a+b,0))
+            
+            if(calcus > 30 ){
+            res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"You are in the red area we recommend solutions for you" })
+            }
+            if(calcus < 30 ){
+              res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"easily achievable solutions"  })
+              }
+
+              if(calcus < 5 ){
+                res.json({ value: `${Math.round(calcus)}  leva more than you should`,message:"You are withing good range"  })
+                }
+    }catch(err)  {
+        console.log(err)
+    }
         
       }
     
-export{ dataRequest}
+export{ dataRequest }
 
