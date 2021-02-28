@@ -28,20 +28,16 @@ export default class Wizard extends React.Component<WizardState, WizardProps> {
 
     render() {
         return (
-            <div>
+          <React.Fragment>
+            <form id="udoma_form" action="/method_call"> 
                 <OwnershipTypeStepComponent/>
                 <CityRegionStepComponent/>
                 <ElectricityStepComponent/>
                 <WaterBillComponent/>
                 <BuildingTypeStepComponent/>
                 <button type="submit">Let's analyze</button>
-            </div>
+            </form>
+          </React.Fragment>
         )
     }
 }
-
-
-
-
-
-

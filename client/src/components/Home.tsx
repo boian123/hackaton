@@ -12,7 +12,7 @@ export default function Handlers() {
   const [users, setUsers] = useState<IUser[]>([])
 
 
-  
+
 
 
  const handleSaveUser = (e: React.FormEvent, formData: IUser): void => {
@@ -31,13 +31,13 @@ export default function Handlers() {
 
 
 
- 
+
   return (
-    <div>  
-     <div className="container" >  
-         <p className="line-1 anim-typewriter">Udoma consultant </p>
+    <div>
+     <div className="container" >
+         <p className="line-1 anim-typewriter">Udoma consultant</p>
      </div>
-     
+
   <Particles
         id="tsparticles"
         options={{
@@ -121,12 +121,8 @@ export default function Handlers() {
       />
            {/* <Register saveUser={handleSaveUser} />     */}
         <Navbar/>
-        
+
     </div>
-  
+
   )
 }
-
-
-
-

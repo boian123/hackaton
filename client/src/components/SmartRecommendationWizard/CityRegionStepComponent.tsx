@@ -23,7 +23,7 @@ export default class CityRegionStepComponent extends React.Component<CityRegionP
                 <input onChange={this.handleInput} type="text">Please enter your location</input>
                 <LocationSearchInput address={this.state.address}/>
             </div>
-        )
+        );
     }
 
     handleInput(event: any){
