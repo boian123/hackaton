@@ -1,134 +1,132 @@
-import { Request,Response } from "express";
-import {  body ,validationResult, buildCheckFunction } from "express-validator";
+import {Request, Response} from "express";
+import {body, validationResult, buildCheckFunction} from "express-validator";
 import {
-  ReasonPhrases,
-  StatusCodes,
-  getReasonPhrase,
-  getStatusCode,
+    ReasonPhrases,
+    StatusCodes,
+    getReasonPhrase,
+    getStatusCode,
 } from 'http-status-codes';
 // import { Data } from '../models/Data';
-import { ownershipSchema } from "../helpers/schemas";
-import { BuildingMaterial, HeatingType } from "../types/Enums";
-import { readlink } from "fs/promises";
+import {ownershipSchema} from "../helpers/schemas";
+import {BuildingMaterial, HeatingType} from "../types/Enums";
+import {readlink} from "fs/promises";
 
 
-const dataRequest =  (req: Request, res: Response) => {
-      console.log(req.body)
-       const { userInput,people,ownership,buildType,electricityBill,heatingType,constructionAge } = req.body;
-       let valueCalc = 50 * people
-        let sumValue:number[] = []
-        let secondArray = valueCalc - sumValue.reduce((a,b)=> a+b,0)
-        
-   
-
-        
-        
+const dataRequest = (req: Request, res: Response) => {
+    console.log(req.body)
+    const {userInput, people, ownership, buildType, electricityBill, heatingType, constructionAge} = req.body;
+    const valueCalc = 50 * people
+    const sumValue: number[] = []
+    const secondArray = valueCalc - sumValue.reduce((a, b) => a + b, 0)
 
 
+    function buildTypeService() {
 
-
-        function buildTypeService() {
-       
-          if(buildType === 'Brick'){
+        if (buildType === 'Brick') {
 
             const addBrick = (valueCalc * 1) - valueCalc
             sumValue.push(addBrick)
-         
-         }
 
-          if(buildType === 'Concrete'){
-             const addConcrete = (valueCalc * 0.96) - valueCalc
-             sumValue.push(addConcrete)
-          }
-          if (buildType === 'Monolith'){
+        }
+
+        if (buildType === 'Concrete') {
+            const addConcrete = (valueCalc * 0.96) - valueCalc
+            sumValue.push(addConcrete)
+        }
+        if (buildType === 'Monolith') {
             const addMonolith = (valueCalc * 0.9) - valueCalc
             sumValue.push(addMonolith)
-          }
-          if(buildType === 'Wood'){
+        }
+        if (buildType === 'Wood') {
             const addWood = (valueCalc * 1.2) - valueCalc
-           sumValue.push(addWood)
-            
-          }
-
+            sumValue.push(addWood)
 
         }
-        buildTypeService()
 
-  
 
-    function buildingAgeService  () { 
+    }
 
-          if(constructionAge < 7 ){
+    buildTypeService()
+
+
+    function buildingAgeService() {
+
+        if (constructionAge < 7) {
             const addNew = 0;
-             sumValue.push(addNew)
-       
-          }
+            sumValue.push(addNew)
 
-          if(constructionAge > 7 && constructionAge <= 15){
+        }
+
+        if (constructionAge > 7 && constructionAge <= 15) {
             const addNormal = (valueCalc * 1.04) - valueCalc
             sumValue.push(addNormal)
-          }
+        }
 
-          if(constructionAge  > 15 && constructionAge <= 35){
+        if (constructionAge > 15 && constructionAge <= 35) {
             const addOld = (valueCalc * 1.10) - valueCalc
             sumValue.push(addOld)
-          }
-          if(constructionAge  > 35){
+        }
+        if (constructionAge > 35) {
             const addOldest = (valueCalc * 1.18) - valueCalc
-             sumValue.push(addOldest)
+            sumValue.push(addOldest)
             // badAlerts.push('Older Property Solution')
 
-          }
-           
-
         }
 
-        buildingAgeService()
+
+    }
+
+    buildingAgeService()
 
 
-        function heatingTypeService  () { 
-          if (heatingType =='AC'){
+    function heatingTypeService() {
+        if (heatingType === 'AC') {
             const addAC = (valueCalc * 1.1) - valueCalc
             sumValue.push(addAC)
-          }
-          if (heatingType == 'Wood'){
+        }
+        if (heatingType === 'Wood') {
             const addWood = (valueCalc * 1.2) - valueCalc
-              sumValue.push(addWood)
-      
-          }
-          if (heatingType =='Palletes'){
+            sumValue.push(addWood)
+
+        }
+        if (heatingType === 'Palletes') {
             const addPalletes = (valueCalc * 1.12) - valueCalc
             sumValue.push(addPalletes)
-          }
-          if (heatingType =='Coal'){
+        }
+        if (heatingType === 'Coal') {
             const addCoal = (valueCalc * 1.17) - valueCalc
-             sumValue.push(addCoal)
-          }
-          if (heatingType =='TEC'){
+            sumValue.push(addCoal)
+        }
+        if (heatingType === 'TEC') {
             const addTEC = (valueCalc * 1.15) - valueCalc
             sumValue.push(addTEC)
-          }
         }
-        heatingTypeService()
-        
-    try{
-        const calcus =userInput -( valueCalc + sumValue.reduce((a,b)=> a+b,0))
-            
-            if(calcus > 30 ){
-            res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"You are in the red area we recommend solutions for you" })
-            }
-            if(calcus < 30 ){
-              res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"easily achievable solutions"  })
-              }
+    }
 
-              if(calcus < 5 ){
-                res.json({ value: `${Math.round(calcus)}  leva more than you should`,message:"You are withing good range"  })
-                }
-    }catch(err)  {
+    heatingTypeService()
+
+    try {
+        const calcus = userInput - (valueCalc + sumValue.reduce((a, b) => a + b, 0))
+
+        if (calcus > 30) {
+            res.json({
+                value: `You are paying ${calcus} leva more than you should`,
+                message: 'Your expenditures far exceed the average based on your input. Check your email for your customized tips and a discount code for our Premium plan.'
+            })
+        }
+        if (calcus < 30) {
+            res.json({value: `You are paying ${calcus} leva more than you should`,
+                            message: 'Your expenditures exceed the averaged based on your input. Check your email for your customized tips and a discount code for our Advanced plan.'})
+        }
+
+        if (calcus < 5) {
+            res.json({value: `You are paying ${calcus} leva more than you should`, message: 'Your expenditures seem to be within what is expected. If you looking to improve your score - check your email for a discount code to our Basic plan'})
+        }
+    } catch (err) {
         console.log(err)
     }
-        
-      }
-    
-export{ dataRequest }
+
+}
+
+export {dataRequest}
 
