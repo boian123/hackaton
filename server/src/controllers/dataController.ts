@@ -115,14 +115,14 @@ const dataRequest =  (req: Request, res: Response) => {
         const calcus =userInput -( valueCalc + sumValue.reduce((a,b)=> a+b,0))
             
             if(calcus > 30 ){
-            res.json({ value: `${calcus}  leva more than you should`, message:"You are in the red area we recommend solutions for you" })
+            res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"You are in the red area we recommend solutions for you" })
             }
             if(calcus < 30 ){
-              res.json({ value: `${calcus}  leva more than you should`, message:"easily achievable solutions"  })
+              res.json({ value: `${Math.round(calcus)}  leva more than you should`, message:"easily achievable solutions"  })
               }
 
               if(calcus < 5 ){
-                res.json({ value: `${calcus}  leva more than you should`,message:"You are withing good range"  })
+                res.json({ value: `${Math.log(calcus)}  leva more than you should`,message:"You are withing good range"  })
                 }
     }catch(err)  {
         console.log(err)
