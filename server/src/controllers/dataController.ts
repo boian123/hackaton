@@ -122,7 +122,7 @@ const dataRequest =  (req: Request, res: Response) => {
               }
 
               if(calcus < 5 ){
-                res.json({ value: `${Math.log(calcus)}  leva more than you should`,message:"You are withing good range"  })
+                res.json({ value: `${Math.round(calcus)}  leva more than you should`,message:"You are withing good range"  })
                 }
     }catch(err)  {
         console.log(err)
